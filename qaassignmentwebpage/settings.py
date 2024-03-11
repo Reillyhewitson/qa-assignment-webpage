@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-(fiba+sio@an9tcrrmj^2r^n*jwwr^xm04x%71#h!oilzufpep
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["reillyhewitson.pythonanywhere.com"]
+ALLOWED_HOSTS = ["reillyhewitson.pythonanywhere.com", "127.0.0.1"]
 
 
 # Application definition
@@ -119,9 +119,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static'
+# ]
 
 STATIC_ROOT = BASE_DIR / 'static'
 

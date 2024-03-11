@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template import loader
-from django.contrib.auth import authenticate
+from django.contrib.auth import logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -28,9 +28,6 @@ def user(request):
     context = {"username": request.user, "experiments": experiments, "experiment_form": CreateExperimentForm, "facility_form": facility_form}
     return render(request, "users/index.html", context)
 
-# @login_required(login_url="accounts/login/")
-# def create_experiment(request):
-
-
-# def logUserIn(request):
-#     user = authenticate(username = request.POST.get("username"), password = request.POST.get("password"))
+def logout_view(request):
+    logout(request)
+    return redirect('home', permanent=True)
