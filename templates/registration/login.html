@@ -11,15 +11,30 @@
     <p>Please Login</p>
   {% endif %}
 {% endif %}
-<form action="{% url 'login' %}" method="post">
-  {% csrf_token %}
-  <label for="username">{{ form.username.label_tag }}</label>
-  {{ form.username }}
-  <label for="password">{{ form.password.label_tag }}</label>
-  {{ form.password }}
-  <input type="submit" value="login"/>
-  <input type="hidden" name="next" value="{{ next }}">
-</form>
+<div id="login-grid">
+  <div>
+    <h2>Login</h2>
+    <form action="" method="post">
+      {% csrf_token %}
+      <label for="username">{{ form.username.label_tag }}</label>
+      {{ form.username }}
+      <label for="password">{{ form.password.label_tag }}</label>
+      {{ form.password }}
+      <input type="submit" value="login"/>
+      <input type="hidden" name="next" value="{{ next }}">
+      <input hidden name="form_type" value="login">
+    </form>
+  </div>
+  <div>
+    <h2>Register</h2>
+    <form action="" method="post">
+      {% csrf_token %}
+      {{ createForm.as_table }}
+      <input type="submit" value="login"/>
+      <input hidden name="form_type" value="user">
+    </form>
+  </div>
+</div>
 
 <!-- <p><a href="{% url 'password_reset' %}">Reset Password</a></p> -->
 {% endblock body %}

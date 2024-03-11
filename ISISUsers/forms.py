@@ -2,6 +2,8 @@ from django import forms
 from django.core import validators
 from django.forms import ModelForm
 from .models import Experiment, Facility
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 # class CreateExperimentForm(forms.Form):
 #     experiment_name = forms.CharField(label="Experiment name", max_length=200)
@@ -29,3 +31,8 @@ class EditFacilityForm(ModelForm):
     class Meta:
         model = Facility
         fields = ["name", "street", "town", "country", "postcode"]
+
+class CustomUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']

@@ -31,3 +31,4 @@ class FacilityUser(models.Model):
 
 
 # facility = models.ForeignKey(settings.AUTH_USER_MODEL, null=False, blank=False)
+    

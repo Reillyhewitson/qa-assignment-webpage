@@ -25,8 +25,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index, name="home"),
-    path("user", views.user),
+    path("user/", views.user, name="user"),
     path("accounts/profile/", views.user),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/logout', views.logout_view, name="logout")
+    path("login/", views.login_view, name="login"),
+    path('accounts/logout', views.logout_view, name="logout"),
+    path('accounts/create-user', views.create_view, name="createUser"),
+    path("create-facility/", views.create_facility, name="createFacility")
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

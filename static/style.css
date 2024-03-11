@@ -6,6 +6,11 @@
     margin: 10px;
 }
 
+#login-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
 body{
     min-height: 100vh;
 }
