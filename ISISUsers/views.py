@@ -9,7 +9,8 @@ from .forms import CreateExperimentForm, EditFacilityForm
 import datetime
 
 def index(request):
-    return render(request, "home/index.html")
+    context = {"username": request.user}
+    return render(request, "home/index.html", context)
 
 @login_required(login_url="accounts/login/")
 def user(request):
