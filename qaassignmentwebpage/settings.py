@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-(fiba+sio@an9tcrrmj^2r^n*jwwr^xm04x%71#h!oilzufpep
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["reillyhewitson.pythonanywhere.com"]
 
 
 # Application definition
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'qaassignmentwebpage.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates/'],
+        'DIRS': [BASE_DIR / 'templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,6 +122,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+
+STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
