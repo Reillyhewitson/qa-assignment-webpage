@@ -1,0 +1,11 @@
+#user-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    height: 100%;
+    margin: 10px;
+}
+
+body{
+    min-height: 100vh;
+}

@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block body %}
+<H1>Hello {{ username }}</H1>
+
+<div id="user-grid">
+    <div id="experiments-list">
+        <div style="display: grid; 
+        grid-template-rows: 0.2fr 10fr;">
+            <div>
+                <h2> Your Experiments</h2>
+            </div>
+            <div>
+            {% for experiment in experiments %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ experiment.name }}</h5>
+                        <p class="card-subtitle mb-2 text-muted">{{ experiment.start_date|date:"d/m/Y" }} - {{ experiment.end_date|date:"d/m/Y" }}</p>
+                        <div class="card-text">{{ experiment.description }}</div>
+                    </div>
+                </div>
+                <hr/>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div>
+        <h3>Create new experiment</h3>
+        <form action="" method="post" style="display: grid;">
+            {% csrf_token %}
+            {{ experiment_form }}
+            <input type="hidden" value="experiment" name="form_type"/>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+    <div>
+        <h3>Update your Facility</h3>
+        <form action="" method="post" style="display: grid;">
+            {% csrf_token %}
+            {{ facility_form }}
+            <input type="hidden" value="facility" name="form_type"/>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block body %}
+
+{% if form.errors %}
+  <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+  {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. Please login with an account that has acess.</p>
+  {% else %}
+    <p>Please Login</p>
+  {% endif %}
+{% endif %}
+<form action="{% url 'login' %}" method="post">
+  {% csrf_token %}
+  <label for="username">{{ form.username.label_tag }}</label>
+  {{ form.username }}
+  <label for="password">{{ form.password.label_tag }}</label>
+  {{ form.password }}
+  <input type="submit" value="login"/>
+  <input type="hidden" name="next" value="{{ next }}">
+</form>
+
+<!-- <p><a href="{% url 'password_reset' %}">Reset Password</a></p> -->
+{% endblock body %}
