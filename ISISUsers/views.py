@@ -41,7 +41,12 @@ def login_view(request):
         customUserForm = CustomUserForm(request.POST)
         if customUserForm.is_valid():
             customUserForm.save()
-            return redirect("createFacility")
+            username = request.POST["username"]
+            password = request.POST["password1"]
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect("createFacility")
         authenticationForm = AuthenticationForm()
     elif request.POST.get('form_type') == "login":
         username = request.POST["username"]
@@ -74,5 +79,6 @@ def create_facility(request):
             return redirect("user")
     else:
         form = EditFacilityForm()
+    print(request.user)
     context = {"facility_form": form}
     return render(request, "registration/facility.html", context)
