@@ -41,4 +41,15 @@
         </form>
     </div>
 </div>
+
+<script>
+    const start_date = document.getElementById("id_start_date")
+    const end_date = document.getElementById("id_end_date")
+    const start_picker = new Datepicker(start_date, {
+        format: "yyyy-mm-dd"
+    })
+    const end_picker = new Datepicker(end_date, {
+        format: "yyyy-mm-dd"
+    })
+</script>
 {% endblock %}
