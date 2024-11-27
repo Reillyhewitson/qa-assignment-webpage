@@ -24,10 +24,11 @@ class Experiment(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     scientist = models.ForeignKey(settings.AUTH_USER_MODEL, null=False, blank=False, on_delete=models.CASCADE)
+    created_by= models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.DO_NOTHING, related_name="experiments_created")
 
 class FacilityUser(models.Model):
     user = models.OneToOneField(User, on_delete= models.CASCADE)
-    facility = models.OneToOneField(Facility, on_delete = models.CASCADE)
+    facility = models.ForeignKey(Facility, on_delete = models.CASCADE)
 
 
 # facility = models.ForeignKey(settings.AUTH_USER_MODEL, null=False, blank=False)
