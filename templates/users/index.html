@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block body %}
-<H1>Hello {{ username }}</H1> <a type="button" class="btn btn-success" href="{% url 'logout' %}">Logout</a> 
+<H1>Hello {{ username }}</H1> <a type="button" class="btn btn-success" href="{% url 'logout' %}">Logout</a>
 
 <div id="user-grid">
     <div id="experiments-list">
@@ -9,25 +9,33 @@
                 <h2> Your Experiments</h2>
             </div>
             <div>
-            {% for experiment in experiments %}
+                {% for experiment in experiments %}
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{ experiment.name }}</h5>
-                        <p class="card-subtitle mb-2 text-muted">{{ experiment.start_date|date:"d/m/Y" }} - {{ experiment.end_date|date:"d/m/Y" }}</p>
+                        <p class="card-subtitle mb-2 text-muted">
+                            {{ experiment.start_date|date:"d/m/Y" }} - {{experiment.end_date|date:"d/m/Y" }}</p>
                         <div class="card-text">{{ experiment.description }}</div>
                     </div>
                 </div>
-                <hr/>
-            {% endfor %}
+                <hr />
+                {% endfor %}
             </div>
         </div>
     </div>
     <div>
+        {% if errors is not None %}
+        <div class="alert-danger alert">
+            {%for error in errors %}
+            <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
         <h3>Create new experiment</h3>
         <form action="" method="post" style="display: grid;">
             {% csrf_token %}
             {{ experiment_form }}
-            <input type="hidden" value="experiment" name="form_type"/>
+            <input type="hidden" value="experiment" name="form_type" />
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
     </div>
@@ -36,7 +44,7 @@
         <form action="" method="post" style="display: grid;">
             {% csrf_token %}
             {{ facility_form }}
-            <input type="hidden" value="facility" name="form_type"/>
+            <input type="hidden" value="facility" name="form_type" />
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
     </div>
@@ -45,11 +53,20 @@
 <script>
     const start_date = document.getElementById("id_start_date")
     const end_date = document.getElementById("id_end_date")
-    const start_picker = new Datepicker(start_date, {
-        format: "yyyy-mm-dd"
-    })
-    const end_picker = new Datepicker(end_date, {
-        format: "yyyy-mm-dd"
-    })
+    const postcode = document.getElementById("id_postcode")
+    start_date.setAttribute("type", "date")
+    end_date.setAttribute("type", "date")
+
+    function checkPostalCode() {
+        const constraint = "^[A-Z]{1,2}[0-9R][0-9A-Z]? ?[0-9][ABDEFGHJLNPQRSTUWXYZ]{2}$"
+    }
+
+    function checkYearInput() {
+        const constraint = 
+    }
+
+    window.onload = () => {
+        document.getElementById("id_postcode").onchange = checkPostalCode;
+    }
 </script>
 {% endblock %}

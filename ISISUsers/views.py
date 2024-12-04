@@ -9,6 +9,7 @@ from django.conf import settings
 from .models import Facility, Experiment, FacilityUser
 from .forms import CreateExperimentForm, EditFacilityForm, CustomUserForm
 import datetime
+from django.core.exceptions import ValidationError
 
 def index(request):
     context = {"username": request.user}
@@ -22,7 +23,12 @@ def user(request):
         print(request.POST)
         if request.POST.get("form_type") == "experiment":
             form = CreateExperimentForm(request.POST, request.FILES)
-            form.save()
+            try:
+                form.save()
+            except ValidationError as e:
+                facility_form = EditFacilityForm(instance=facility)
+                context = {"username": request.user, "experiments": form, "experiment_form": CreateExperimentForm, "facility_form": facility_form, "errors": e}
+                return render(request, "users/index.html", context)
         if request.POST.get("form_type") == "facility":
             form = EditFacilityForm(request.POST, request.FILES, instance=facility)
             form.save()

@@ -26,6 +26,11 @@ class Experiment(models.Model):
     scientist = models.ForeignKey(settings.AUTH_USER_MODEL, null=False, blank=False, on_delete=models.CASCADE)
     created_by= models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.DO_NOTHING, related_name="experiments_created")
 
+    def save(self, **kwargs):
+        if self.end_date < self.start_date:
+            raise ValidationError("End Date is before Start Date")
+        super().save(**kwargs)
+
 class FacilityUser(models.Model):
     user = models.OneToOneField(User, on_delete= models.CASCADE)
     facility = models.ForeignKey(Facility, on_delete = models.CASCADE)
