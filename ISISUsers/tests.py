@@ -26,7 +26,7 @@ class ExperimentsTestCaseDifferentUser(TestCase):
     def test_experiment_has_user(self):
         """User has been correctly defined"""
         experiment = Experiment.objects.get(name="New test Experiment")
-        self.assertEqual(experiment.created_by.id, self.user_alt.id)
+        self.assertEqual(experiment.created_by.id, self.user.id)
         self.assertEqual(experiment.scientist.id, self.user.id)
 
 class ExperimentsTestCaseSameUser(TestCase):
