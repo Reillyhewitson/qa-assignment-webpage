@@ -58,15 +58,32 @@
     end_date.setAttribute("type", "date")
 
     function checkPostalCode() {
-        const constraint = "^[A-Z]{1,2}[0-9R][0-9A-Z]? ?[0-9][ABDEFGHJLNPQRSTUWXYZ]{2}$"
+        const constraint = new RegExp("^[A-Z]{1,2}[0-9R][0-9A-Z]? ?[0-9][ABDEFGHJLNPQRSTUWXYZ]{2}$", "");
+        if (constraint.test(postcode.value)) {
+            postcode.setCustomValidity("")
+        }
+        else {
+            postcode.setCustomValidity("Postcode must be a valid uk postcode")
+        }
     }
 
     function checkYearInput() {
-        const constraint = 
+        const constraint = start_date.value < end_date.value
+
+        if (constraint) {
+            start_date.setCustomValidity("")
+            end_date.setCustomValidity("")
+        }
+        else {
+            start_date.setCustomValidity("The Experiment must start before it ends")
+            end_date.setCustomValidity("The Experiment must start before it ends")
+        }
     }
 
     window.onload = () => {
         document.getElementById("id_postcode").onchange = checkPostalCode;
+        start_date.onchange = checkYearInput;
+        end_date.onchange = checkYearInput;
     }
 </script>
 {% endblock %}

@@ -829,5 +829,21 @@
             "user": 3,
             "facility": 1
         }
+    },
+    {
+        "model": "ISISUsers.facilityuser",
+        "pk": 3,
+        "fields": {
+            "user": 2,
+            "facility": 1
+        }
+    },
+    {
+        "model": "ISISUsers.facilityuser",
+        "pk": 4,
+        "fields": {
+            "user": 1,
+            "facility": 1
+        }
     }
 ]

@@ -15,7 +15,7 @@ def index(request):
     context = {"username": request.user}
     return render(request, "home/index.html", context)
 
-@login_required(login_url="accounts/login/")
+@login_required(login_url="/login/")
 def user(request):
     facilityId = FacilityUser.objects.filter(user=request.user).first()
     facility = Facility.objects.get(pk=facilityId.facility.pk)
