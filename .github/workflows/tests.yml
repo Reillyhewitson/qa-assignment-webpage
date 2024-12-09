@@ -17,6 +17,6 @@ jobs:
       run: python manage.py test 2>&1 | tee test.txt
     - name: generate artifact
       uses: actions/upload-artifact@v4
-        with: 
-          name: test-output
-          path: test.txt
+      with: 
+        name: test-output
+        path: test.txt
