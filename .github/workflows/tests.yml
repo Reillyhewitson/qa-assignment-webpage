@@ -14,4 +14,9 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
     - name: run tests
-      run: python manage.py test
+      run: python manage.py test 2>&1 | tee test.txt
+    - name: generate artifact
+      uses: actions/upload-artifact@v4
+        with: 
+          name: test-output
+          path: test.txt
